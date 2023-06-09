@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Jex",
   "version": "0.0.1",
   "description": "a web extension that utilizes Google Cloud's Vertex AI en-US-Neural2-J for real-time screen-reading services",
@@ -8,20 +8,29 @@
     "48": "images/jex_48.png",
     "128": "images/jex_128.png"
   },
-  "browser_action": {
-    "default_icon": "images/jex_48.png",
-    "default_popup": "popup.html"
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/jex_16.png",
+      "48": "images/jex_48.png",
+      "128": "images/jex_128.png"
+    }
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+    "service_worker": "background.js",
+    "type": "module"
   },
   "permissions": [
     "activeTab",
     "contextMenus",
-    "storage"
+    "storage",
+    "identity"
   ],
+  "oauth2": {
+    "client_id": "482281533253-73ncq3qk67smbn5rhl6dqn1jlchdbikj.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  },
   "homepage_url": "https://github.com/ebi-yade/jex"
 }
